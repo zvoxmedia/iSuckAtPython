@@ -1,0 +1,109 @@
+Objectives of this training:
+(1) Discuss what GitHub is, and the functions it provides.
+(2) Walkthrough the setup
+(3) Create a repository, upload files, and download
+(4) More advanced workflow (branches)
+(5) Discuss conflict management
+(6) Discuss potential uses for you projects
+
+
+Objective (1): What is GitHub?
+  A - Github provides a means for developers to collaboratively work on code files.
+  B - Github allows for sharing of repositories (code libraries).
+  C - Github allows for reverting project folders to previous versions.
+
+Objective (2): Walkthrough the setup https://docs.github.com/en/free-pro-team@latest/github/getting-started-with-github/set-up-git#setting-up-git
+  A - Create an account on github.com.
+  B - Install git (method A - CLI (command line interpreter)):
+    1 - download the version for your OS @ https://git-scm.com/downloads.
+    2 - If using linux bash terminal - sudo apt install git.
+    3 - Test it out by running git from the cmd line, which should show options for commands.
+  C - Install Github desktop.
+    1 - https://docs.github.com/en/free-pro-team@latest/desktop/installing-and-configuring-github-desktop
+  D - Setup your git username to match you github account
+    1 - git config --global user.name "USERNAME"
+    2 - This will set the username globally, so all respositories will have the subject username
+    3 - We are not doing more complicated github works that would require elsewise.
+  E - Change/verify your email by doing step D above but for user.email.
+  F - You now have git installed on your machine.
+
+Objective (3): Create a repository, upload files, and download
+  A - Create a repository:
+    1 - https://github.com/new
+    2 - Select properties as appropriate
+    3 - If you do not have any files, create a read me so the repository can be
+      cloned.  Empty repositories will not be cloned
+
+  B - Link (clone) a repository on your machine:
+    1 - From command line, navigate to the directory you wish to clone the repository
+    2 - In cmd line, enter "git clone LINKNAME"
+      A - If you are in C:\Users\you\Documents and clone the repository TEST,
+      the repository will be created as a new folder in documents.
+      B - C:\Users\you\Documents\TEST
+    3 - Verify the contents match by typing "git status" in cmd line.
+    4 - Alternatively, you can create the repository by another means, and then
+      populate it with the content from the git repository by:
+      A. "git clone LINKNAME ." where the "." represents the current CLI directory
+
+  C - Download files:
+    1 - To download (pull) files from the repository:
+      A - "git pull origin BRANCHNAME"
+
+  D - Upload files (commit):https://docs.github.com/en/free-pro-team@latest/desktop/contributing-and-collaborating-using-github-desktop/committing-and-reviewing-changes-to-your-project#about-commits
+    1 - Change one of the files locally, and save any changes.
+    2 - CLI "git diff" and "git status" will indicate changes have been made, and not staged for commit.
+    3 - Stage files to be committed by:
+      A - "git add -A" Adds all files
+      B - "git add FILENAME"
+    4 - to undo the staging area:
+      A - "git reset" or "git reset FILENAME"
+    5 - Commit the changes:
+      A - "git commit -m "MESSAGE FOR THE COMMIT"
+    6 - Ensure you are up to date with the current repository
+      A - "git pull origin BRANCHNAME"
+      B - This will pull all changes made to the repository since last pull
+    7 - Push the commit
+      A - "git push origin BRANCHNAME"
+      B - Enter username and password when prompted (first time in CLI session only)
+
+Objective (4): More Advanced Workflow (branches)
+    It is more desireable to develop features in branches in lieu of the main
+    repository.
+  1 - Determine your current branch via "git branch"
+  2 - Create a new branch via "git branch BRANCHNAME"
+  3 - Checkout the branch via "git checkout BRANCHNAME"
+  4 - Make changes, add, and commit same as above, except now it is committed to
+    the checked out branch.
+  5 - "git push -u origin BRANCHNAME"
+    A - The -u basically tell git that we want to associate these branches together
+  6 - When you desire to merge branches:
+    A - Checkout main branch, and perform a pull
+    B - See branches merged with the main via "git branch --merged"
+      1 - This will show branches which have been merged.
+    C - Merger via "git merge BRANCHNAME"
+      1 - This merges them locally, they still must be pushed to remote.
+    D - Push to remote same as you would for a normal commit
+    E - Verify the merged branch via "git branch --merged"
+    F - Delete the branch via "git branch -d BRANCHNAME" (-d → delete)
+      1 - This deletes it locally, but must still be pushed to remote
+    G - "git push origin --delete BRANCHNAME"
+    H - Verify it's deleted via "git branch -a"
+    I - Normal workflow would be to:
+      1 - Make new branch, check it out
+      2 - Make changes to files
+      3 - Commit and push the changes to the remote branch
+      4 - Run tests to verify it works
+      5 - Merge with the main repository
+
+Objective (5): Discuss Merge Conflict Management
+  1 - Conflicts arise when trying 2 files which are attempted to merge have
+    different code on the same line.
+  2 - git identifies this to you, and modifies the remote and local files with
+    the conflict text.
+  3 - this conflict looks like the following:
+    <<<<<<< HEAD
+    Local text.
+    =======
+    Remote text.
+    >>>>>>> origin/main or COMMITHASH
+  4 - Resolve this conflict by making the code look like you want it to look.

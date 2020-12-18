@@ -1,0 +1,1 @@
+This file is generated to create an empty users folder.

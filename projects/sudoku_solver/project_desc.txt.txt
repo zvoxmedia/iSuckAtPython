@@ -1,0 +1,1 @@
+The objective of this project is to create a python script that will determine the solution for a sudoku puzzle.
