@@ -1,9 +1,5 @@
 This is changing an existing file.
 
-<<<<<<< HEAD
 This was the banana file we uploaded.
-=======
-This was the second file we uploaded.
->>>>>>> 1a52690edf7c4af9fbddecfeeabde903b1f1a5fd
 
 We will upload more.
